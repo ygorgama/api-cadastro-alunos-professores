@@ -1,4 +1,4 @@
-import { Column, Model, Table, DataType, BelongsToMany, ForeignKey, HasOne } from 'sequelize-typescript';
+import { Column, Model, Table, DataType, BelongsToMany, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import Rooms from './Room';
 
 @Table({
@@ -25,7 +25,7 @@ class Teachers extends Model {
     @Column({type: DataType.INTEGER})
     declare room_id: number;
 
-    @HasOne(() => Rooms)
+    @BelongsTo(() => Rooms)
     declare room: Rooms
 
 }
