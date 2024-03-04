@@ -9,7 +9,7 @@ class Students extends Model {
     
     @Column({
         primaryKey: true,
-        type: DataType.BIGINT,
+        type: DataType.INTEGER,
     })
     declare id: number;
 

@@ -1,6 +1,5 @@
-import { Column, Model, Table, DataType, BelongsToMany } from 'sequelize-typescript';
+import { Column, Model, Table, DataType, BelongsToMany, ForeignKey, HasOne } from 'sequelize-typescript';
 import Rooms from './Room';
-import TeacherRoom from './RoomTeacher';
 
 @Table({
     tableName: 'teachers'
@@ -9,7 +8,7 @@ class Teachers extends Model {
     
     @Column({
         primaryKey: true,
-        type: DataType.BIGINT,
+        type: DataType.INTEGER,
     })
     declare id: number;
 
@@ -20,10 +19,14 @@ class Teachers extends Model {
     declare cpf: string;
 
     @Column({type: DataType.STRING})
-    declare formacao: string;
+    declare degree: string;
 
-    @BelongsToMany(() => Rooms, () => TeacherRoom)
-    declare rooms: Array<Rooms & {TeacherRoom: TeacherRoom}>;
+    @ForeignKey(() => Rooms)
+    @Column({type: DataType.INTEGER})
+    declare room_id: number;
+
+    @HasOne(() => Rooms)
+    declare room: Rooms
 
 }
 

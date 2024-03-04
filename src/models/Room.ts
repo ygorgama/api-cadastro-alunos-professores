@@ -1,5 +1,4 @@
 import { Column, Model, Table, DataType, BelongsToMany } from 'sequelize-typescript';
-import TeacherRoom from './RoomTeacher';
 import Teachers from './Teachers';
 import StudentRoom from './StudentRoom';
 import Students from './Students';
@@ -19,8 +18,7 @@ class Rooms extends Model {
     @Column({type: DataType.STRING})
     declare description: string;
 
-    @BelongsToMany(() => Teachers, () => TeacherRoom)
-    declare teachers: Array<Teachers & {TeacherRoom: TeacherRoom}>;
+
 
     @BelongsToMany(() => Students, () => StudentRoom)
     declare students: Array<Students & {StudentRoom: StudentRoom}>;

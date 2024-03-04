@@ -11,14 +11,14 @@ class StudentRoom extends Model {
     @ForeignKey(() => Students)
     @Column({
         primaryKey: true,
-        type: DataType.BIGINT,
+        type: DataType.INTEGER,
     })
     declare student_id: number;
 
     @ForeignKey(() => Rooms)
     @Column({
         primaryKey: true,
-        type: DataType.BIGINT, 
+        type: DataType.INTEGER, 
     })
     declare room_id: number;
 }

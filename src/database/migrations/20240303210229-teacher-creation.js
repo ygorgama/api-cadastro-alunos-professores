@@ -5,22 +5,22 @@ module.exports = {
   async up (queryInterface, {DataTypes}) {
     return queryInterface.createTable('teachers', {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
       },
       name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
         allowNull: false,
       },
       cpf: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(11),
         allowNull: false,
         unique: true
       },
-      formacao: {
-        type: DataTypes.STRING,
+      degree: {
+        type: DataTypes.STRING(50),
         allowNull: false,
       },
       created_at:{
