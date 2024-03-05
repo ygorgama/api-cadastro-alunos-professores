@@ -31,6 +31,7 @@ routes.post('/store', [
 ],TeacherController.store);
 
 routes.get('/', TeacherController.index);
+routes.get('/:id', TeacherController.index);
 
 
 export default routes;

@@ -54,8 +54,24 @@ class TeacherController{
         try {
             const teachers = await Teachers.findAll({include: Rooms, attributes: ['name', 'id', 'cpf']})
             return res.status(200).json({
-                message: 'Teacher fetched with sucess!',
+                message: 'Teachers fetched with sucess!',
                 teachers: teachers
+            })
+        } catch (error) {
+            error = new ErrorHandler((error as Error).message);
+        }
+    }
+
+    static async indexOne(req: Request, res: Response, next: NextFunction){
+        const teacherId = req.params.id;
+        try {
+            const teacher = Teachers.findByPk(teacherId, {attributes: ['name', 'cpf', 'degree'], include: [{
+                model: Rooms,
+                attributes: ['id', 'description']
+            }]})
+            return res.status(200).json({
+                message: 'Teacher fetched with sucess!',
+                teachers: teacher
             })
         } catch (error) {
             error = new ErrorHandler((error as Error).message);
