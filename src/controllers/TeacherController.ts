@@ -25,35 +25,40 @@ class TeacherController{
                 throw  error;
             }
 
-            const hasTeacher = await Teachers.findOne({
-                where: {
-                    cpf: cpf
-                }
-            });
-
-            if (hasTeacher) {
-                const error = new ErrorHandler('Teacher already exist!');
-                error.setStatusCode(422);
-                throw  error;
-            }
-
             const teacher = new Teachers({
                 cpf: cpf,
                 name: name,
-                formacao: degree,
+                degree: degree,
+                roomId: roomNumber
             })
 
             const newTeacher = await teacher.save();
 
+            return res.status(200).json({
+                message: 'Teacher created with success',
+                teacher: newTeacher
+            })
 
         } catch (e) {
             let error;
             if (e instanceof ErrorHandler) {
               error = e;        
             }else{
-              error = error = new ErrorHandler((e as Error).message);
+               error = new ErrorHandler((e as Error).message);
             }
             return next(error);
+        }
+    }
+
+    static async index(req: Request, res: Response, next: NextFunction){
+        try {
+            const teachers = await Teachers.findAll({include: Rooms})
+            return res.status(200).json({
+                message: 'Teacher fetched with sucess!',
+                teachers: teachers
+            })
+        } catch (error) {
+            error = new ErrorHandler((error as Error).message);
         }
     }
 }

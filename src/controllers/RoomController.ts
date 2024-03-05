@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import Rooms from "../models/Room";
 import ErrorHandler from "../error-handler/ErrorHandler";
 import { validationResult } from "express-validator";
+import Teachers from "../models/Teachers";
+import Students from "../models/Students";
 
 class RoomController{
     static async store(req: Request, res: Response, next: NextFunction){
@@ -43,7 +45,9 @@ class RoomController{
 
     static async index(req: Request, res: Response, next: NextFunction){
         try {
-            const rooms = await Rooms.findAll();
+            const rooms = await Rooms.findAll({
+                include: [Teachers]
+            });
 
             let message = 'No room found!'
 
@@ -57,7 +61,7 @@ class RoomController{
             });
         } catch (e) {
             const error = new ErrorHandler((e as Error).message);
-            return next(error);
+            return next(error); 
         }
     }
 }

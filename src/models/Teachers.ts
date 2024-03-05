@@ -23,7 +23,7 @@ class Teachers extends Model {
 
     @ForeignKey(() => Rooms)
     @Column({type: DataType.INTEGER})
-    declare room_id: number;
+    declare roomId: number;
 
     @BelongsTo(() => Rooms)
     declare room: Rooms
