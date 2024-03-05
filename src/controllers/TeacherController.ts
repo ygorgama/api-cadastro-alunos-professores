@@ -52,7 +52,7 @@ class TeacherController{
 
     static async index(req: Request, res: Response, next: NextFunction){
         try {
-            const teachers = await Teachers.findAll({include: Rooms})
+            const teachers = await Teachers.findAll({include: Rooms, attributes: ['name', 'id', 'cpf']})
             return res.status(200).json({
                 message: 'Teacher fetched with sucess!',
                 teachers: teachers

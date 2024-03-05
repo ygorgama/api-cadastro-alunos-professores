@@ -1,4 +1,4 @@
-import { Column, Model, Table, DataType, BelongsToMany, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Column, Model, Table, DataType, BelongsToMany, ForeignKey, BelongsTo, AutoIncrement } from 'sequelize-typescript';
 import Rooms from './Room';
 
 @Table({
@@ -6,6 +6,7 @@ import Rooms from './Room';
 })
 class Teachers extends Model {
     
+    @AutoIncrement
     @Column({
         primaryKey: true,
         type: DataType.INTEGER,
