@@ -79,6 +79,14 @@ class TeacherController{
     }
 
     static async update(req: Request, res: Response, next: NextFunction){
+        const errors = validationResult(req);
+        
+        if (!errors.isEmpty()) {
+            const error = new ErrorHandler(errors.array()[0].msg);
+            error.setStatusCode(422);
+            return next(error);
+        }
+        
         const teacherId = req.params.id;
         const {name, cpf, degree, roomNumber} = req.body
         try {
@@ -112,6 +120,14 @@ class TeacherController{
 
     static async delete(req: Request, res: Response, next: NextFunction){
         const teacherId = req.params.id;
+        const errors = validationResult(req);
+        
+        if (!errors.isEmpty()) {
+            const error = new ErrorHandler(errors.array()[0].msg);
+            error.setStatusCode(422);
+            return next(error);
+        }
+        
         try {
             const teacher = await Teachers.findByPk(teacherId);
 
