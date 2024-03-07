@@ -1,4 +1,4 @@
-import { Column, Model, Table, DataType, BelongsToMany } from 'sequelize-typescript';
+import { Column, Model, Table, DataType, BelongsToMany, AutoIncrement, PrimaryKey } from 'sequelize-typescript';
 import Rooms from './Room';
 import StudentRoom from './StudentRoom';
 
@@ -7,6 +7,8 @@ import StudentRoom from './StudentRoom';
 })
 class Students extends Model {
     
+    @AutoIncrement
+    @PrimaryKey
     @Column({
         primaryKey: true,
         type: DataType.INTEGER,
@@ -17,10 +19,7 @@ class Students extends Model {
     declare name: string;
 
     @Column({type: DataType.STRING})
-    declare email: string;
-
-    @Column({type: DataType.STRING})
-    declare password: string 
+    declare cpf: string;
 
     @BelongsToMany(() => Rooms, () => StudentRoom)
     declare rooms: Array<Rooms & {StudentRoom: StudentRoom}>;
