@@ -77,6 +77,63 @@ class TeacherController{
             error = new ErrorHandler((error as Error).message);
         }
     }
+
+    static async update(req: Request, res: Response, next: NextFunction){
+        const teacherId = req.params.id;
+        const {name, cpf, degree, roomNumber} = req.body
+        try {
+            const teacher = await Teachers.findByPk(teacherId);
+
+            if (!teacher) {
+                const error = new ErrorHandler('Teacher does not exist!');
+                error.setStatusCode(404);
+                throw  error;
+            }
+
+            teacher.name = name;
+            teacher.cpf = cpf;
+            teacher.degree = degree;
+            teacher.roomId = roomNumber;
+
+            const updatedTeacher = await teacher.save();
+            
+            return res.status(200).json({
+                message: 'Teacher updated!',
+                teachers: updatedTeacher
+            });
+
+        } catch (error) {
+            if (!(error instanceof ErrorHandler)) {
+                error = new ErrorHandler((error as Error).message);
+            }
+            return next(error);
+        }
+    }
+
+    static async delete(req: Request, res: Response, next: NextFunction){
+        const teacherId = req.params.id;
+        try {
+            const teacher = await Teachers.findByPk(teacherId);
+
+            if (!teacher) {
+                const error = new ErrorHandler('Teacher does not exist!');
+                error.setStatusCode(404);
+                throw  error;
+            }
+
+            await teacher.destroy();
+
+            return res.json({
+                message: "Teacher deleted!"
+            })
+
+        } catch (error) {
+            if (!(error instanceof ErrorHandler)) {
+                error = new ErrorHandler((error as Error).message);
+            }
+            return next(error);
+        }
+    }
 }
 
 export default TeacherController;
