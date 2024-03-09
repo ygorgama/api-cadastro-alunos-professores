@@ -28,10 +28,29 @@ routes.post('/store', [
     }).isString().isLength({min: 11, max: 11}),
     body('name').isString().isLength({min: 4}),
     body('roomNumber').isInt()
-],StudentController.store);
+], authenticate, StudentController.store);
 
-routes.get('/', StudentController.index);
-routes.get('/:id', StudentController.indexOne);
-routes.delete('/:id', StudentController.delete);
+routes.get('/', authenticate, StudentController.index);
+
+routes.get('/:id', [
+    param('id').isInt()
+], authenticate, StudentController.indexOne);
+
+routes.delete('/:id', [
+    param('id').isInt()
+] , authenticate, StudentController.delete);
+
+routes.put('/:id'
+, [
+    body('cpf').custom((value, {req}) => {
+        if (!cpf.isValid(value)) {
+            const error = new ErrorHandler('Cpf is not valid!');
+            error.setStatusCode(422);
+            throw error;
+        }
+        return true;
+    }).isString().isLength({min: 11, max: 11}),
+    body('name').isString().isLength({min: 4}),
+], authenticate, StudentController.update);
 
 export default routes;

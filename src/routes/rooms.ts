@@ -19,6 +19,6 @@ routes.post('/store', [
     })
 ], authenticate ,RoomController.store);
 
-routes.get('/index', RoomController.index)
+routes.get('/index', authenticate, RoomController.index)
 
 export default routes;

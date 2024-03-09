@@ -32,7 +32,9 @@ routes.post('/store', [
 ],TeacherController.store);
 
 routes.get('/', TeacherController.index);
-routes.get('/:id', TeacherController.index);
+routes.get('/:id', [
+    param('id').isInt()
+], TeacherController.index);
 
 routes.put('/:id', [
     body('cpf').trim().custom((value, {req}) => {
