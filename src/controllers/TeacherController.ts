@@ -75,6 +75,7 @@ class TeacherController{
             })
         } catch (error) {
             error = new ErrorHandler((error as Error).message);
+            return next(error);
         }
     }
 

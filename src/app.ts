@@ -5,6 +5,7 @@ import helmet from "helmet";
 import authRoute from './routes/auth'; 
 import roomsRoute from './routes/rooms'; 
 import teacherRoute from './routes/teacher'; 
+import studentRoute from './routes/student'; 
 import ErrorHandler from "./error-handler/ErrorHandler";
 import { authenticate } from "./middleware/authenticate";
 
@@ -24,6 +25,7 @@ app.get('/', authenticate ,authenticate ,(req: Request, res: Response) => {
 app.use('/v1/auth', authRoute);
 app.use('/v1/rooms', roomsRoute);
 app.use('/v1/teachers', teacherRoute);
+app.use('/v1/students', studentRoute);
 
 app.use((error: ErrorHandler, req: Request, res:Response, next:NextFunction) => {
     const message = error.message;

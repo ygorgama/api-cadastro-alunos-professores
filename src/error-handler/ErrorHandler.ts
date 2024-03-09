@@ -1,4 +1,4 @@
-import ErrorHandlerInterface from "./ErrorInterface";
+import ErrorHandlerInterface from "./interface/ErrorInterface";
 
 class ErrorHandler extends Error implements ErrorHandlerInterface{
     statusCode: number;

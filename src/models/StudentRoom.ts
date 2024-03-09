@@ -4,7 +4,7 @@ import Teachers from './Teachers';
 import Students from './Students';
 
 @Table({
-    tableName: 'students-room',
+    tableName: 'student-room',
     timestamps: false
 })
 class StudentRoom extends Model {
