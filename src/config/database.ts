@@ -1,13 +1,11 @@
 import 'dotenv/config';
 import { Options } from 'sequelize';
 
-
-
 const mainDatabase: Options = {
     dialect: 'mysql',
     host: process.env.DB_HOST as string,
     password: process.env.DB_PASSWORD as string,
-    database: process.env.DB_NAME as string,
+    database: process.env.DATABASE as string,
     username: process.env.DB_USERNAME as string,
     port: Number(process.env.DB_PORT),
     define: {

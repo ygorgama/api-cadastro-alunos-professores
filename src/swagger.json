@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "API School Register",
+        "description": "API which register students, teachers and rooms"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/v1"
+        }
+    ],
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": ["Auth"],
+                "summary": "Login",
+                "responses": {
+                    "200": {
+                        "description": "Login sucessfull!"
+                    }
+                },
+                "description": "This route will be used for users to login on the application",
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            
+        },
+        "/auth/register": {
+            "post": {
+                "tags": ["Auth"],
+                "summary": "Register",
+                "responses": {
+                    "201": {
+                        "description": "User created"
+                    }
+                },
+                "description": "This route will be for register new users",
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

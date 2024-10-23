@@ -8,6 +8,8 @@ import teacherRoute from './routes/teacher';
 import studentRoute from './routes/student'; 
 import ErrorHandler from "./error-handler/ErrorHandler";
 import { authenticate } from "./middleware/authenticate";
+import swaggerUI from "swagger-ui-express";
+import swaggerDocs from './swagger.json'
 
 const app = express();
 
@@ -15,6 +17,7 @@ app.use(cors());
 app.use(helmet());
 
 app.use(express.json());
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.get('/', authenticate ,authenticate ,(req: Request, res: Response) => {
     return res.json({
