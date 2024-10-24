@@ -34,7 +34,7 @@ class TeacherController{
 
             const newTeacher = await teacher.save();
 
-            return res.status(200).json({
+            return res.status(201).json({
                 message: 'Teacher created with success',
                 teacher: newTeacher
             })

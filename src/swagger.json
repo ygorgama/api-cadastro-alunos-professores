@@ -74,6 +74,141 @@
                 }
 
             }
+        },
+        "/students/store": {
+            "post": {
+                "tags": ["Students"],
+                "summary": "Students",
+                "responses": {
+                    "201": {
+                        "description": "Student created"
+                    }
+                },
+                "description": "This route will register a new Student",
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    },
+                                    "roomNumber": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        "/rooms/store": {
+            "post": {
+                "tags": ["Rooms"],
+                "summary": "Route that is responsable for create new rooms",
+                "responses": {
+                    "201": {
+                        "description": "Student created"
+                    }
+                },
+                "description": "This route will register a new room",
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "roomNumber": {
+                                        "type": "integer"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        "/rooms/index": {
+            "get": {
+                "tags": ["Rooms"],
+                "summary": "Route that is responsable for index all rooms",
+                "responses": {
+                    "200": {
+                        "description": "Rooms fetched"
+                    }
+                },
+                "description": "This route will fetch all the the rooms"
+            }
+        },
+        "/teachers/": {
+            "get": {
+                "tags": ["Teachers"],
+                "summary": "Route that is responsable for index all teachers",
+                "responses": {
+                    "200": {
+                        "description": "Teachers fetched"
+                    }
+                },
+                "description": "This route will fetch all the the teachers"
+            }
+        },
+        "/teachers/{id}": {
+            "get": {
+                "tags": ["Teachers"],
+                "summary": "Route that is responsable for index all teachers",
+                "responses": {
+                    "200": {
+                        "description": "Teacher fetched"
+                    }
+                },
+                "description": "This route will fetch one teacher using id"
+            }
+        },
+        "/teachers/store": {
+            "post": {
+                "tags": ["Teachers"],
+                "summary": "Route that is responsable for create new teachers on the database",
+                "responses": {
+                    "201": {
+                        "description": "Teachers created"
+                    }
+                },
+                "description": "This route will register a new room",
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "roomNumber": {
+                                        "type": "integer"
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "degree": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
         }
     }
 }
