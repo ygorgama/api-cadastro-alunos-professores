@@ -7,12 +7,15 @@
 * Mysql 8.3.0
 * Sequelize 6.37.1
 * Npm 10.5.0
+* Docker
 
 ## Mandadory Commands 
 
-* __npm install__ (baixar as dependências da aplição)
-* __npm build__ (necessário para fazer uso do sequelize-cli)
-* __npx sequelize-cli db:create__ (cria o banco de dados de acordo com as especificações do arquivo .env)
-* __npx sequelize-cli db:migrate__ (monta as tabelas do banco de dados de acordo com as migrations)
-* __npm run dev__ (roda a aplicação em modo de desenvolvimento)
+* __npm install__ (Install application packets)
+* __npm build__ (Will be need to make a build of the  application cause the CLI of sequelize only function with default javascript)
+* __cp .env.example .env__ (Will create an example .env with all the need things for run the project)
+* __docker compose up -d__ (Run the mysql database on the background)
+* __npx sequelize-cli db:create__ (Create  the database with the specification of the .env archieve)
+* __npx sequelize-cli db:migrate__ (Create thhe  database table)
+* __npm run dev__ (Run the application on developer mode)
 
