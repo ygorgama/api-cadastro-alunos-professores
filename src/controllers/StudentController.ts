@@ -42,7 +42,7 @@ class StudentController {
       const studentSaved = await student.save();
       await studentSaved.$set("rooms", room);
 
-      return res.json({
+      return res.status(201).json({
         message: "Student Created",
         student: studentSaved,
       });
@@ -57,11 +57,10 @@ class StudentController {
   static async index(req: Request, res: Response, next: NextFunction) {
     try {
       const students = await Students.findAll({
-        attributes: ["id", "name"],
-        include: ["rooms"],
+        attributes: ["id", "name", "cpf"],
       });
 
-      return res.json({
+      return res.status(200).json({
         message: "Students fetched!",
         students: students,
       });
@@ -89,8 +88,13 @@ class StudentController {
         message: "Students fetched!",
         student: student,
       });
-    } catch (error) {
-      error = new ErrorHandler((error as Error).message);
+    } catch (e) {
+      let error;
+      if (e instanceof ErrorHandler) {
+        error = e;        
+      }else{
+         error = new ErrorHandler((e as Error).message);
+      }
       return next(error);
     }
   }
@@ -110,8 +114,20 @@ class StudentController {
       student.name = name;
       student.cpf = cpf;
 
-    } catch (error) {
-      error = new ErrorHandler((error as Error).message);
+      student.save();
+
+      return res.status(200).json({
+        message: "Students update!",
+        removedStudent: student,
+      });
+      
+    } catch (e) {
+      let error;
+      if (e instanceof ErrorHandler) {
+        error = e;        
+      }else{
+         error = new ErrorHandler((e as Error).message);
+      }
       return next(error);
     }
   }
