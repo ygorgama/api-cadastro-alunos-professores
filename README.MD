@@ -17,5 +17,6 @@
 * __docker compose up -d__ (Run the mysql database on the background)
 * __npx sequelize-cli db:create__ (Create  the database with the specification of the .env archieve)
 * __npx sequelize-cli db:migrate__ (Create thhe  database table)
+* __npx  sequelize-cli init:seeders__  (Create the users for test the application)
 * __npm run dev__ (Run the application on developer mode)
 
